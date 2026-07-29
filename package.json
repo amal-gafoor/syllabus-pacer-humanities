@@ -1,0 +1,24 @@
+{
+  "name": "syllabus-pacer",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "curriculum": "node scripts/xlsx-to-curriculum.mjs",
+    "check": "node scripts/check-planner.mjs"
+  },
+  "dependencies": {
+    "lucide-react": "0.454.0",
+    "next": "14.2.35",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "10.5.2",
+    "postcss": "8.5.16",
+    "tailwindcss": "3.4.19"
+  }
+}

@@ -1,0 +1,52 @@
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# build output
+.next
+out
+build
+dist
+
+# secrets — .env.local holds SHEETS_WEBAPP_URL, the Apps Script endpoint
+.env
+.env.local
+.env.*.local
+
+# Kept out of the public repo deliberately:
+#   google-apps-script/ — contains the submissions spreadsheet ID
+#   textbooks/          — the syllabus workbook, incl. internal teacher names
+# The generated curriculum in lib/curriculum/ IS committed, so the app builds
+# and runs without either. Only `npm run curriculum` needs the workbook.
+google-apps-script/
+textbooks/
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# test / tooling output
+coverage
+.eslintcache
+*.tsbuildinfo
+
+# deployment
+.vercel
+
+# editors and local tool state
+.claude
+.vscode
+.idea
+*.swp
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Excel lock files, created beside the workbook while it's open
+~$*.xlsx
