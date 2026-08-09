@@ -50,3 +50,4 @@ desktop.ini
 
 # Excel lock files, created beside the workbook while it's open
 ~$*.xlsx
+.evn.local
