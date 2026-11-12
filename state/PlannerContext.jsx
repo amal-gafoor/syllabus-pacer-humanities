@@ -44,7 +44,6 @@ export function PlannerProvider({ children }) {
   const [phone, setPhone] = useState("");
   const [cls, setCls] = useState(DEFAULT_CLASS);
   const [medium, setMedium] = useState("English");
-  const [epsid, setEpsid] = useState("");
 
   // timeline
   const [fromDate, setFromDate] = useState(dates.from);
@@ -68,7 +67,6 @@ export function PlannerProvider({ children }) {
         const s = JSON.parse(raw);
         if (s.name != null) setName(s.name);
         if (s.phone != null) setPhone(s.phone);
-        if (s.epsid != null) setEpsid(s.epsid);
         // Coerce a stale saved combo (e.g. a removed class + Malayalam) to a valid medium.
         const savedCls = CLASSES.includes(s.cls) ? s.cls : DEFAULT_CLASS;
         const savedMedium = mediumsFor(savedCls).includes(s.medium) ? s.medium : "English";
@@ -108,14 +106,14 @@ export function PlannerProvider({ children }) {
       sessionStorage.setItem(
         STORAGE_KEY,
         JSON.stringify({
-          name, phone, epsid, cls, medium, fromDate, toDate,
+          name, phone, cls, medium, fromDate, toDate,
           weeklyOff: [...weeklyOff], extraLeave, selected,
         })
       );
     } catch {
       /* private mode / quota — persistence is a convenience, not a requirement */
     }
-  }, [hydrated, name, phone, epsid, cls, medium, fromDate, toDate, weeklyOff, extraLeave, subjects]);
+  }, [hydrated, name, phone, cls, medium, fromDate, toDate, weeklyOff, extraLeave, subjects]);
 
   useEffect(() => {
     let alive = true;
@@ -185,7 +183,7 @@ export function PlannerProvider({ children }) {
     [subjects, fromDate, toDate, weeklyOff, extraLeave]
   );
 
-  const details = { name, phone, epsid };
+  const details = { name, phone };
   const detailsValid = areDetailsValid(details);
 
   const saveToSheet = useCallback(async () => {
@@ -198,7 +196,8 @@ export function PlannerProvider({ children }) {
       )
     );
     const payload = {
-      epsid, name, phone, class: cls, medium, fromDate, toDate,
+      // EPSID was removed from the form; still sent so the sheet columns line up.
+      epsid: null, name, phone, class: cls, medium, fromDate, toDate,
       // Names, not indices — the sheet is read by humans.
       weeklyOff: [...weeklyOff].sort((a, b) => a - b).map((d) => WEEKDAYS[d]),
       extraLeave: Number(extraLeave || 0),
@@ -222,10 +221,10 @@ export function PlannerProvider({ children }) {
     } catch {
       setSaveStatus("error");
     }
-  }, [plan, subjects, epsid, name, phone, cls, medium, fromDate, toDate, weeklyOff, extraLeave]);
+  }, [plan, subjects, name, phone, cls, medium, fromDate, toDate, weeklyOff, extraLeave]);
 
   const value = {
-    name, setName, phone, setPhone, epsid, setEpsid,
+    name, setName, phone, setPhone,
     cls, changeClass, medium, changeMedium,
     fromDate, setFromDate, toDate, setToDate,
     weeklyOff, toggleWeekly, extraLeave, setExtraLeave,

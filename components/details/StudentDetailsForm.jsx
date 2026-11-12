@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { GraduationCap, Phone, IdCard, ArrowRight, AlertTriangle } from "lucide-react";
+import { GraduationCap, Phone, ArrowRight, AlertTriangle } from "lucide-react";
 import Card from "@/components/ui/Card";
 import SectionHead from "@/components/ui/SectionHead";
 import Field, { inputCls, errCls } from "@/components/ui/Field";
@@ -13,7 +13,7 @@ import { detailErrors, detailsHint } from "@/lib/validation";
 export default function StudentDetailsForm() {
   const router = useRouter();
   const {
-    name, setName, phone, setPhone, epsid, setEpsid,
+    name, setName, phone, setPhone,
     cls, changeClass, medium, changeMedium,
     details, detailsValid,
   } = usePlanner();
@@ -36,7 +36,7 @@ export default function StudentDetailsForm() {
           <input
             className={inputCls + (err.name ? errCls : "")}
             value={name}
-            placeholder="Name"
+            placeholder="e.g. Anjali"
             autoComplete="name"
             aria-invalid={!!err.name}
             onChange={(e) => setName(e.target.value)}
@@ -93,21 +93,6 @@ export default function StudentDetailsForm() {
           })()}
         </Field>
 
-        <Field label="EPSID" required error={err.epsid}>
-          <div className="relative">
-            <IdCard size={15} className="pointer-events-none absolute left-3 top-3.5 text-slate-400" />
-            <input
-              inputMode="text"
-              maxLength={9}
-              className={inputCls + " pl-9 tracking-wider" + (err.epsid ? errCls : "")}
-              value={epsid}
-              aria-invalid={!!err.epsid}
-              onChange={(e) =>
-                setEpsid(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 9))
-              }
-            />
-          </div>
-        </Field>
       </div>
 
       <div className="mt-6 flex flex-col items-stretch gap-2 sm:items-end">

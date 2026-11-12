@@ -12,7 +12,7 @@ export default function AppHeader() {
       </div>
       <div className="min-w-0">
         <h1 className="font-hand text-4xl font-bold leading-none tracking-tight text-slate-900">
-          Syllabus Pacer
+          Time Table Creator
         </h1>
         <p className="truncate text-sm text-slate-500">
           {cls} · turn your chapters and deadline into topics a day.

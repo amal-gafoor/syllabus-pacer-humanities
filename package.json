@@ -1,5 +1,5 @@
 {
-  "name": "syllabus-pacer",
+  "name": "time-table-creator",
   "version": "2.0.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,8 @@
     "check": "node scripts/check-planner.mjs"
   },
   "dependencies": {
+    "html2canvas": "^1.4.1",
+    "jspdf": "^4.2.1",
     "lucide-react": "0.454.0",
     "next": "14.2.35",
     "react": "18.3.1",

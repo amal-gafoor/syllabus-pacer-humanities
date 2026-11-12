@@ -24,10 +24,9 @@ export async function POST(request) {
     try { parsed = JSON.parse(body); } catch {}
     const name = String(parsed.name || "").trim();
     const phone = String(parsed.phone || "").replace(/\D/g, "");
-    const epsid = String(parsed.epsid || "").trim().toUpperCase();
-    if (!name || phone.length !== 10 || !/^EPS\d{6}$/.test(epsid)) {
+    if (!name || phone.length !== 10) {
       return Response.json(
-        { ok: false, configured: true, error: "A name, 10-digit phone number, and valid EPSID (EPS000000) are required." },
+        { ok: false, configured: true, error: "A name and 10-digit phone number are required." },
         { status: 422 }
       );
     }

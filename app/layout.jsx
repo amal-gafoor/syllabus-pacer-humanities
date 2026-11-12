@@ -6,7 +6,7 @@ const lora = Lora({ subsets: ["latin"], variable: "--font-lora", display: "swap"
 const caveat = Caveat({ subsets: ["latin"], weight: ["600", "700"], variable: "--font-caveat", display: "swap" });
 
 export const metadata = {
-  title: "Syllabus Pacer",
+  title: "Time Table Creator",
   description: "Turn your chapters and deadline into topics a day.",
   // Tells Chrome / Google Translate to leave the page alone. Chapter and topic
   // names are the textbook's own wording — Malayalam, Hindi, Arabic, Urdu,

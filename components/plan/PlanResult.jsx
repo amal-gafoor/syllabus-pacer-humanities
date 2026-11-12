@@ -5,6 +5,7 @@ import MiniStat from "@/components/ui/MiniStat";
 import PlanHero from "./PlanHero";
 import SubjectBreakdown from "./SubjectBreakdown";
 import DaySchedule from "./DaySchedule";
+import DownloadButton from "./DownloadButton";
 import { usePlanner } from "@/state/PlannerContext";
 
 export default function PlanResult() {
@@ -23,6 +24,10 @@ export default function PlanResult() {
 
   return (
     <div>
+      <div className="mb-3 flex justify-end">
+        <DownloadButton />
+      </div>
+
       <PlanHero plan={plan} name={name} />
 
       {plan.tight && (
