@@ -198,6 +198,8 @@ export function PlannerProvider({ children }) {
     const payload = {
       // EPSID was removed from the form; still sent so the sheet columns line up.
       epsid: null, name, phone, class: cls, medium, fromDate, toDate,
+      // All pacers share one submissions tab; this tells their rows apart.
+      stream: "Humanities",
       // Names, not indices — the sheet is read by humans.
       weeklyOff: [...weeklyOff].sort((a, b) => a - b).map((d) => WEEKDAYS[d]),
       extraLeave: Number(extraLeave || 0),
